@@ -1,0 +1,35 @@
+{
+  "name": "ak-eventemitter",
+  "version": "0.0.1",
+  "description": "eventemitter with namespaces",
+  "keywords": [
+    "events",
+    "eventemitter",
+    "mediator",
+    "namespace"
+  ],
+  "license": "MIT",
+  "author": "Avétis KAZARIAN",
+  "contributors": "Avétis KAZARIAN",
+  "homepage": "https://github.com/avetisk/ak-eventemitter",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/avetisk/ak-eventemitter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/avetisk/ak-eventemitter/issues"
+  },
+  "readmeFilename": "README.md",
+  "scripts": {
+    "test": "make test"
+  },
+  "engines": {
+    "node": "~0.10.22"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "benchmark": "~1.0.0",
+    "eventemitter2": "*",
+    "mocha": "~1.14.0"
+  }
+}
