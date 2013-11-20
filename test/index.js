@@ -145,7 +145,7 @@ describe('EventEmitter', function () {
 
   // #off()
   describe('#off()', function () {
-    it('ON: hari.*, EMIT hari.bol, OFF: hari.*, EMIT: hari.hari', function (done) {
+    it('ON: hari.*, EMIT: hari.bol, OFF: hari.*, EMIT: hari.hari', function (done) {
       var emitter = new EventEmitter();
       emitter.once('hari.*', function () {
         done();
@@ -162,6 +162,17 @@ describe('EventEmitter', function () {
       emitter.emit('hari.bol');
       emitter.off();
       emitter.emit('hari.hari');
+    });
+  });
+
+  describe('delimiter', function () {
+    it('ON: hari::*, EMIT: hari.bol, hari::bol', function (done) {
+      var emitter = new EventEmitter({'delimiter': '::'});
+      emitter.on('hari::*', function () {
+        done();
+      });
+      emitter.emit('hari.bol');
+      emitter.emit('hari::bol');
     });
   });
 });
