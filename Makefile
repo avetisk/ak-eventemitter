@@ -5,6 +5,7 @@ test: validate
 
 clean:
 	@rm -fr node_modules
+	@rm -fr ./lib-cov
 
 benchmark:
 	@node benchmark/index.js
