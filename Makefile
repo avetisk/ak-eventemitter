@@ -1,9 +1,9 @@
-JS = $$(find index.js test benchmark -name '*.js')
+JS = $$(find index.js ./lib ./test ./benchmark -name '*.js')
 
 test: validate
 	@./node_modules/.bin/mocha test --reporter dot
 
-distclean:
+clean:
 	@rm -fr node_modules
 
 benchmark:
