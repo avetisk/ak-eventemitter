@@ -1,13 +1,10 @@
 JS = $$(find index.js test benchmark -name '*.js')
 
-install:
-	@npm install
+test: validate
+	@./node_modules/.bin/mocha test --reporter dot
 
 distclean:
 	@rm -fr node_modules
-
-test: validate
-	@./node_modules/.bin/mocha test --reporter dot
 
 benchmark:
 	@node benchmark/index.js
@@ -15,4 +12,9 @@ benchmark:
 validate:
 	@jshint --config .jshintrc $(JS)
 
-.PHONY: install distclean test benchmark validate
+coverage:
+	@rm -fr ./lib-cov
+	@jscoverage ./lib ./lib-cov
+	@-TEST_COVERAGE=1 ./node_modules/.bin/mocha --reporter html-cov > ./lib-cov/index.html
+
+.PHONY: distclean test benchmark validate coverage
