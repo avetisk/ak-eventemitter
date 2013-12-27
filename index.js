@@ -1,1 +1,1 @@
-module.exports = process.env.TEST_COVERAGE ? require('./lib-cov/eventemitter') : require('./lib/eventemitter');
+module.exports = process.env.AK_EVENTEMITTER_TEST_COVERAGE ? require('./lib-cov/eventemitter') : require('./lib/eventemitter');

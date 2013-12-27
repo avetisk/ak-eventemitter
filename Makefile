@@ -1,11 +1,16 @@
-JS = $$(find index.js ./lib ./test ./benchmark -name '*.js')
+JS = $$(find index.js ./lib ./test/index.js ./benchmark -name '*.js')
 
-test: validate
+test: validate buildtest
+	@./node_modules/karma/bin/karma start
 	@./node_modules/.bin/mocha test --reporter dot
 
 clean:
-	@rm -fr node_modules
+	@rm -f ./test/build.js
+	@rm -fr ./node_modules
 	@rm -fr ./lib-cov
+
+buildtest:
+	@./node_modules/.bin/browserify -d ./test/index.js --ignore-missing > ./test/build.js
 
 benchmark:
 	@node benchmark/index.js
@@ -15,7 +20,10 @@ validate:
 
 coverage:
 	@rm -fr ./lib-cov
-	@jscoverage ./lib ./lib-cov
-	@-TEST_COVERAGE=1 ./node_modules/.bin/mocha --reporter html-cov > ./lib-cov/index.html
+	@./node_modules/.bin/istanbul instrument -o ./lib-cov ./lib
+	@AK_EVENTEMITTER_TEST_COVERAGE=1 ./node_modules/.bin/browserify -d ./test/index.js -t envify --ignore-missing > ./test/build.js
+	@./node_modules/karma/bin/karma start karma-coverage.conf.js --browsers Chrome
+	@./node_modules/karma/bin/karma start karma-coverage.conf.js --browsers Firefox
+	@./node_modules/karma/bin/karma start karma-coverage.conf.js --browsers Safari
 
-.PHONY: distclean test benchmark validate coverage
+.PHONY: clean test buildtest benchmark validate coverage
