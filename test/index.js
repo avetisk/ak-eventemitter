@@ -139,11 +139,26 @@ describe('EventEmitter', function () {
   describe('#once()', function () {
     it('ONCE: hari.*, EMIT: hari.bol, hari.hari', function (done) {
       var emitter = new EventEmitter();
+      var counter = 0;
       emitter.once('hari.*', function () {
-        done();
+        counter += 1;
+        assert(counter === 1);
       });
       emitter.emit('hari.bol');
       emitter.emit('hari.hari');
+      emitter.once('hari.bol', function () {
+        counter += 1;
+        assert(counter === 2);
+      });
+      emitter.once('hari.bol', function () {
+        counter += 1;
+        assert(counter === 3);
+      });
+      emitter.emit('hari.bol');
+
+      if (counter === 3) {
+        done();
+      }
     });
   });
 
