@@ -22,8 +22,8 @@ coverage:
 	@rm -fr ./lib-cov
 	@./node_modules/.bin/istanbul instrument -o ./lib-cov ./lib
 	@AK_EVENTEMITTER_TEST_COVERAGE=1 ./node_modules/.bin/browserify -d ./test/index.js -t envify --ignore-missing > ./test/build.js
-	@./node_modules/karma/bin/karma start karma-coverage.conf.js --browsers Chrome
-	@./node_modules/karma/bin/karma start karma-coverage.conf.js --browsers Firefox
-	@./node_modules/karma/bin/karma start karma-coverage.conf.js --browsers Safari
+	@AK_EVENTEMITTER_TEST_COVERAGE=1 ./node_modules/karma/bin/karma start karma-coverage.conf.js --browsers Chrome
+	@AK_EVENTEMITTER_TEST_COVERAGE=1 ./node_modules/karma/bin/karma start karma-coverage.conf.js --browsers Firefox
+	@AK_EVENTEMITTER_TEST_COVERAGE=1 ./node_modules/karma/bin/karma start karma-coverage.conf.js --browsers Safari
 
 .PHONY: clean test buildtest benchmark validate coverage

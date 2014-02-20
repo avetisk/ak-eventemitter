@@ -3,7 +3,7 @@
 'use strict';
 
 var assert = require('assert');
-var EventEmitter = require('../');
+var EventEmitter = process.env.AK_EVENTEMITTER_TEST_COVERAGE ? require('../lib-cov/eventemitter') : require('../');
 
 describe('EventEmitter', function () {
   // #on() and #emit()
