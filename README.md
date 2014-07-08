@@ -129,11 +129,11 @@ var counter = {
 
 ee.on('room.user.enter', function (ns) {
   this.enter += 1;
-}, );
+}, counter);
 
 ee.on('room.user.leave', function (ns) {
   this.leave += 1;
-}, );
+}, counter);
 
 ee.emit('room.user.enter', 'john');
 ee.emit('room.user.leave', 'mary');
