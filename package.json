@@ -24,9 +24,6 @@
     "test": "make test",
     "benchmark": "make benchmark"
   },
-  "engines": {
-    "node": ">=0.10.22"
-  },
   "dependencies": {},
   "devDependencies": {
     "benchmark": "*",
