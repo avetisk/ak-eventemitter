@@ -1,6 +1,6 @@
 {
   "name": "ak-eventemitter",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "eventemitter with namespaces",
   "keywords": [
     "events",
